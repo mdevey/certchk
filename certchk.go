@@ -53,8 +53,8 @@ func check(server string, width int) {
 
 	for _, c := range conn.ConnectionState().PeerCertificates {
 		if valid == nil {
-			fmt.Printf("%*s | valid, expires on %s (%s)\n", width, server,
-				c.NotAfter.Format("2006-01-02"), humanize.Time(c.NotAfter))
+			fmt.Printf("%*s | valid, expires on %s (%s), Issued by %s\n", width, server,
+				c.NotAfter.Format("2006-01-02"), humanize.Time(c.NotAfter), c.Issuer.CommonName)
 		} else {
 			fmt.Printf("%*s | %v\n", width, server, valid)
 		}
